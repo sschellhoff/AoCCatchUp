@@ -6,9 +6,9 @@ import de.sschellhoff.utils.pathfinding.aStar
 import java.util.*
 
 class Day23: Day<Long, Long>(23, 2021, 12521, 44169) {
-    override fun part1(input: String): Long = input.toState().solve()
+    override fun part1(input: String, isTest: Boolean): Long = input.toState().solve()
 
-    override fun part2(input: String): Long = input.toState(true).solve()
+    override fun part2(input: String, isTest: Boolean): Long = input.toState(true).solve()
 
     private fun State.solve(): Long {
         val endState = State.finished()

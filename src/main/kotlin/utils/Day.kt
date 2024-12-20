@@ -28,7 +28,7 @@ abstract class Day<R1, R2>(private val day: Int, private val year: Int, private 
         if (runMode == RunMode.TEST || runMode == RunMode.BOTH) {
             val testInput = getInput(dayAsString, year, true, if (part == Part.One) testInputSuffixPart1 else testInputSuffixPart2)
             val (testResult, duration) = measureTimedValue {
-                if (part == Part.One) part1(testInput) else part2(testInput)
+                if (part == Part.One) part1(testInput, true) else part2(testInput, true)
             }
             printResult(testResult, if (part == Part.One) testResultPart1 else testResultPart2, part.toInt, true)
             println("$yellowColor$duration$resetColor")
@@ -37,7 +37,7 @@ abstract class Day<R1, R2>(private val day: Int, private val year: Int, private 
         if (runMode == RunMode.REAL || runMode == RunMode.BOTH) {
             val realInput = getInput(dayAsString, year)
             val (realResult, duration) = measureTimedValue {
-                if (part == Part.One) part1(realInput) else part2(realInput)
+                if (part == Part.One) part1(realInput, false) else part2(realInput, false)
             }
             printResult(realResult, null, part.toInt, false)
             println("$yellowColor$duration$resetColor")
@@ -56,9 +56,9 @@ abstract class Day<R1, R2>(private val day: Int, private val year: Int, private 
         println("part $part${if (isTest) " (test)" else ""}: $printColor$result$resetColor")
     }
 
-    protected abstract fun part1(input: String): R1
+    protected abstract fun part1(input: String, isTest: Boolean): R1
 
-    protected abstract fun part2(input: String): R2
+    protected abstract fun part2(input: String, isTest: Boolean): R2
 }
 
 private fun getInput(day: String, year: Int, test: Boolean = false, suffix: String = "") = File("src/main/resources/Year$year/Day$day${if (test) "_test" else ""}$suffix.txt").readText()
