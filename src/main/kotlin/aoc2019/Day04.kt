@@ -2,10 +2,6 @@ package de.sschellhoff.aoc2019
 
 import de.sschellhoff.utils.Day
 
-fun main() {
-    Day04().run(Day.RunMode.BOTH)
-}
-
 class Day04: Day<Int, Int>(4, 2019, 369, 288) {
     override fun part1(input: String, isTest: Boolean): Int {
         return input.parse().count { test(it) }
