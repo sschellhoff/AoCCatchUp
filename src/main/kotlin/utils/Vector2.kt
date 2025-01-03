@@ -25,6 +25,13 @@ fun Vector2.move(direction: Direction): Vector2 = when (direction) {
     Direction.WEST -> Vector2(x, y) + Vector2.Left
 }
 
+fun Vector2.move(direction: Direction, amount: Long) = when (direction) {
+    Direction.NORTH -> Vector2(x, y) + Vector2.Up * amount
+    Direction.EAST -> Vector2(x, y) + Vector2.Right * amount
+    Direction.SOUTH -> Vector2(x, y) + Vector2.Down * amount
+    Direction.WEST -> Vector2(x, y) + Vector2.Left * amount
+}
+
 data class Vector2i(val x: Int, val y: Int) {
     operator fun plus(other: Vector2i) = Vector2i(x + other.x, y + other.y)
     operator fun minus(other: Vector2i) = Vector2i(x - other.x, y - other.y)
